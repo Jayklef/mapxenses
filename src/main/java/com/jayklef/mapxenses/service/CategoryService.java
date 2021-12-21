@@ -13,4 +13,6 @@ public interface CategoryService {
     Category getCategoryById(Long id) throws CategoryNotFoundException;
 
     Category updateCategory(Long id, Category category);
+
+    void deleteCategory(Long id);
 }

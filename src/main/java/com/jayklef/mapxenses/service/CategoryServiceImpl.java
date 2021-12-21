@@ -31,7 +31,7 @@ public class CategoryServiceImpl implements CategoryService{
         Optional<Category> category = categoryRepository.findById(id);
 
         if (id == null){
-            throw new CategoryNotFoundException();
+            throw new CategoryNotFoundException("Category Not Found");
         }
 
         return categoryRepository.findById(id).get();
@@ -48,4 +48,10 @@ public class CategoryServiceImpl implements CategoryService{
 
         return categoryRepository.save(category);
     }
+
+    @Override
+    public void deleteCategory(Long id) {
+        categoryRepository.deleteById(id);
+    }
+
 }
