@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.controller;
 
+import com.jayklef.mapxenses.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.model.Category;
 import com.jayklef.mapxenses.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,12 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/{id}")
-    public Category getCategoryById(@PathVariable("id") Long id){
+    public Category getCategoryById(@PathVariable("id") Long id) throws CategoryNotFoundException {
         return categoryService.getCategoryById(id);
     }
 
     @PutMapping("/categories/{id}")
-    public Category updateCategory(@PathVariable("id") Long id){
-        return categoryService.updateCategory(id);
+    public Category updateCategory(@PathVariable("id") Long id, Category category){
+        return categoryService.updateCategory(id, category);
     }
 }
