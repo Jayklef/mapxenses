@@ -21,5 +21,6 @@ public class User {
     private String name;
     private String email;
     private String gender;
+    private String address;
     private String profession;
 }
