@@ -29,4 +29,11 @@ public class CategoryServiceImpl implements CategoryService{
         Optional<Category> category = categoryRepository.findById(id);
         return categoryRepository.findById(id).get();
     }
+
+    @Override
+    public Category updateCategory(Long id) {
+        Category category = categoryRepository.findById(id).get();
+
+        return categoryRepository.findById(id).get();
+    }
 }
