@@ -12,7 +12,7 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Expenses {
+public class Expense {
 
     @Id
     private Long id;
