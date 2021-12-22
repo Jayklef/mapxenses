@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.service;
 
+import com.jayklef.mapxenses.exception.UserNotFoundException;
 import com.jayklef.mapxenses.model.User;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface UserService {
 
     User saveUser(User user);
 
-    User getUserById(Long id);
+    User getUserById(Long id) throws UserNotFoundException;
 
     User getUserByName(String name);
 

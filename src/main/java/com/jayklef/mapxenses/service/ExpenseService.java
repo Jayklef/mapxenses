@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.service;
 
+import com.jayklef.mapxenses.exception.ExpenseNotFoundException;
 import com.jayklef.mapxenses.model.Expense;
 
 import java.util.List;
@@ -9,9 +10,9 @@ public interface ExpenseService {
 
     Expense saveExpense(Expense expense);
 
-    Expense getExpenseById(Long id);
+    Expense getExpenseById(Long id) throws ExpenseNotFoundException;
 
-    Expense updateExpense(Expense expense);
+    Expense updateExpense(Long id, Expense expense);
 
     void deleteExpense(Long id);
 }

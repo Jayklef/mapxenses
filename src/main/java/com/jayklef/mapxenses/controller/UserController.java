@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.controller;
 
+import com.jayklef.mapxenses.exception.UserNotFoundException;
 import com.jayklef.mapxenses.model.User;
 import com.jayklef.mapxenses.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,11 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable("id") Long id){
+    public User getUserById(@PathVariable("id") Long id) throws UserNotFoundException {
         return userService.getUserById(id);
     }
 
-    @GetMapping("/users/{name}")
+    @GetMapping("/users/name")
     public User getUserByName(@PathVariable("name") String name){
         return userService.getUserByName(name);
     }

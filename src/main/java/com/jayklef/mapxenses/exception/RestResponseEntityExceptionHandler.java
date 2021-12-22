@@ -33,4 +33,13 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(message);
     }
+
+    public ResponseEntity<ErrorMessage> ExpenseNotFoundException(ExpenseNotFoundException exception,
+                                                                 WebRequest request){
+        ErrorMessage message = new ErrorMessage(HttpStatus.NOT_FOUND,
+                exception.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(message);
+    }
 }

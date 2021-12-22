@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.controller;
 
+import com.jayklef.mapxenses.exception.ExpenseNotFoundException;
 import com.jayklef.mapxenses.model.Expense;
 import com.jayklef.mapxenses.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,14 @@ public class ExpenseController {
     }
 
     @GetMapping("/expenses/{id}")
-    public Expense getExpenseById(@PathVariable("id") Long id){
+    public Expense getExpenseById(@PathVariable("id") Long id) throws ExpenseNotFoundException {
         return expenseService.getExpenseById(id);
     }
 
     @PutMapping("/expenses/{id}")
     public Expense updateExpense(@PathVariable("id")Long id,
                                  @RequestBody Expense expense){
-        return expenseService.updateExpense(expense);
+        return expenseService.updateExpense(id, expense);
     }
 
     @DeleteMapping("/expenses/{id}")
