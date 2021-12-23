@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 
@@ -18,6 +19,7 @@ public class Expense {
     private Long id;
     private String description;
     private LocalDate expenseDate;
+    private BigDecimal amount;
 
     @ManyToOne
     private Category category;

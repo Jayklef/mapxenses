@@ -52,6 +52,11 @@ public class ExpenseServiceImpl implements ExpenseService{
             expenseInDb.setExpenseDate(expense.getExpenseDate());
         }
 
+        if (Objects.nonNull(expense.getAmount())&&
+               !"".equalsIgnoreCase(expense.getAmount().toString())){
+            expenseInDb.setAmount(expense.getAmount());
+        }
+
         if (Objects.nonNull(expense.getCategory())&&
                 !"".equalsIgnoreCase(expense.getCategory().getId().toString())){
             expenseInDb.setCategory(expense.getCategory());
