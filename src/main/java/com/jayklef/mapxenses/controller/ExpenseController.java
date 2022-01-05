@@ -3,16 +3,11 @@ package com.jayklef.mapxenses.controller;
 import com.jayklef.mapxenses.exception.ExpenseNotFoundException;
 import com.jayklef.mapxenses.model.Expense;
 import com.jayklef.mapxenses.service.ExpenseService;
-import com.jayklef.mapxenses.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @Slf4j
@@ -51,9 +46,5 @@ public class ExpenseController {
     public String deleteExpense(@PathVariable("id") Long expenseId){
         expenseService.deleteExpense(expenseId);
         return "Expense deleted successfully";
-    }
-
-    public BigDecimal calculateWeeklyExpenses(String startDate, String endDate){
-        return expenseService.calculateWeeklyExpenses(startDate, endDate);
     }
 }
