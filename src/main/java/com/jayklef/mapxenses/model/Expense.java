@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class Expense {
 
     @Id
-    private Long id;
+    private Long expenseId;
     private String description;
     private LocalDate expenseDate;
     private BigDecimal amount;

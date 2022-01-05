@@ -2,19 +2,21 @@ package com.jayklef.mapxenses.service;
 
 import com.jayklef.mapxenses.exception.UserNotFoundException;
 import com.jayklef.mapxenses.model.User;
+import com.jayklef.mapxenses.repository.ExpenseRepository;
 import com.jayklef.mapxenses.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ExpenseRepository expenseRepository;
 
     @Override
     public List<User> getUserList() {

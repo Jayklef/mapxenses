@@ -2,19 +2,24 @@ package com.jayklef.mapxenses.service;
 
 import com.jayklef.mapxenses.exception.ExpenseNotFoundException;
 import com.jayklef.mapxenses.model.Expense;
+import com.jayklef.mapxenses.model.User;
 import com.jayklef.mapxenses.repository.ExpenseRepository;
+import com.jayklef.mapxenses.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService{
 
     @Autowired
     private ExpenseRepository expenseRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<Expense> getExpenseList() {
@@ -27,20 +32,20 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
-    public Expense getExpenseById(Long id) throws ExpenseNotFoundException {
+    public Expense getExpenseById(Long expenseId) throws ExpenseNotFoundException {
 
-        Optional<Expense> expense = expenseRepository.findById(id);
+        Optional<Expense> expense = expenseRepository.findById(expenseId);
 
-        if (id == null){
+        if (expenseId == null){
             throw new ExpenseNotFoundException("Expense not found");
         }
 
-        return expenseRepository.findById(id).get();
+        return expenseRepository.findById(expenseId).get();
     }
 
     @Override
-    public Expense updateExpense(Long id, Expense expense) {
-        Expense expenseInDb = expenseRepository.findById(id).get();
+    public Expense updateExpense(Long expenseId, Expense expense) {
+        Expense expenseInDb = expenseRepository.findById(expenseId).get();
 
         if (Objects.nonNull(expense.getDescription())&&
         !"".equalsIgnoreCase(expense.getDescription())){
@@ -70,7 +75,7 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
-    public void deleteExpense(Long id) {
-      expenseRepository.deleteById(id);
+    public void deleteExpense(Long expenseId) {
+      expenseRepository.deleteById(expenseId);
     }
 }

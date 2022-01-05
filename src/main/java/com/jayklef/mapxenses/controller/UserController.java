@@ -1,12 +1,15 @@
 package com.jayklef.mapxenses.controller;
 
 import com.jayklef.mapxenses.exception.UserNotFoundException;
+import com.jayklef.mapxenses.model.Expense;
 import com.jayklef.mapxenses.model.User;
+import com.jayklef.mapxenses.service.ExpenseService;
 import com.jayklef.mapxenses.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -16,6 +19,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ExpenseService expenseService;
 
     @GetMapping("/users")
     public List<User> getUserList(){
@@ -52,5 +58,9 @@ public class UserController {
     public String deleteUser(@PathVariable("id") Long id){
         userService.deleteUser(id);
         return "User deleted successfully";
+    }
+
+    public Collection<Expense> calculateMonthlyExpense(@PathVariable("id") Long id){
+        return expenseService.getExpenseList();
     }
 }
