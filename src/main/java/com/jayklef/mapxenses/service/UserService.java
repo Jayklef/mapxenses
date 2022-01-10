@@ -7,13 +7,13 @@ import com.jayklef.mapxenses.model.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> getUserList();
+    List<User> findUserList();
 
     User saveUser(User user);
 
-    User getUserById(Long id) throws UserNotFoundException;
+    User findUserById(Long id) throws UserNotFoundException;
 
-    User getUserByName(String name);
+    User findUserByName(String name);
 
     User updateUser(Long id, User user);
 

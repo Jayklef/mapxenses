@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 public interface ExpenseService {
-    List<Expense> getExpenseList();
-
     Expense saveExpense(Expense expense);
-
-    Expense getExpenseById(Long expenseId) throws ExpenseNotFoundException;
 
     Expense updateExpense(Long expenseId, Expense expense);
 
     void deleteExpense(Long expenseId);
+
+    List<Expense> findExpenseList();
+
+    Expense findExpenseById(Long expenseId) throws ExpenseNotFoundException;
 }

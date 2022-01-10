@@ -5,6 +5,8 @@ import com.jayklef.mapxenses.model.Category;
 import com.jayklef.mapxenses.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,34 +20,38 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/categories")
-    public List<Category> getCategoryList(){
+    public ResponseEntity<List<Category>> getCategoryList(){
         log.info("Inside getCategoryList of CategoryController");
-        return categoryService.getCategoryList();
+        List<Category> categories = categoryService.findAllCategories();
+        return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
-    @PostMapping("/categories")
-    public Category saveCategory(@RequestBody Category category){
+    @PostMapping("/categories/save")
+    public ResponseEntity<Category> addCategory(@RequestBody Category category){
         log.info("Inside saveCategory of CategoryController");
-        return categoryService.saveCategory(category);
+        Category addCategory = categoryService.saveCategory(category);
+        return new ResponseEntity<>(addCategory, HttpStatus.CREATED);
     }
 
-    @GetMapping("/categories/{id}")
-    public Category getCategoryById(@PathVariable("id") Long id) throws CategoryNotFoundException {
+    @GetMapping("/categories/get/{id}")
+    public ResponseEntity<Category> getCategoryById(@PathVariable("id") Long id) throws CategoryNotFoundException {
         log.info("Inside getCategoryById of CategoryController");
-        return categoryService.getCategoryById(id);
+        Category category = categoryService.findCategoryById(id);
+        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
-    @PutMapping("/categories/{id}")
-    public Category updateCategory(@PathVariable("id") Long id,
+    @PutMapping("/categories/update/{id}")
+    public ResponseEntity<Category> updateCategory(@PathVariable("id") Long id,
                                    @RequestBody Category category){
         log.info("Inside updateCategory of CategoryController");
-        return categoryService.updateCategory(id, category);
+        Category updateCategory = categoryService.updateCategory(id, category);
+        return new ResponseEntity<>(updateCategory, HttpStatus.OK);
     }
 
-    @DeleteMapping("/categories/{id}")
-    public String deleteCategory(@PathVariable("id") Long id){
+    @DeleteMapping("/categories/delete/{id}")
+    public ResponseEntity<String> deleteCategory(@PathVariable("id") Long id){
         log.info("Inside deleteCategory of CategoryController");
         categoryService.deleteCategory(id);
-        return "Category Removed Successfully";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

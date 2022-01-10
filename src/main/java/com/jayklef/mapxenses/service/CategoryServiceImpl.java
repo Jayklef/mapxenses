@@ -17,7 +17,7 @@ public class CategoryServiceImpl implements CategoryService{
     private CategoryRepository categoryRepository;
 
     @Override
-    public List<Category> getCategoryList() {
+    public List<Category> findAllCategories() {
         return categoryRepository.findAll();
     }
 
@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public Category getCategoryById(Long id) throws CategoryNotFoundException {
+    public Category findCategoryById(Long id) throws CategoryNotFoundException {
         Optional<Category> category = categoryRepository.findById(id);
 
         if (id == null){

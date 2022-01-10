@@ -5,6 +5,8 @@ import com.jayklef.mapxenses.model.Expense;
 import com.jayklef.mapxenses.service.ExpenseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,33 +20,38 @@ public class ExpenseController {
     private ExpenseService expenseService;
 
     @GetMapping("/expenses")
-    public List<Expense> getExpenseList(){
+    public ResponseEntity<List<Expense>> getExpenseList(){
         log.info("Inside getExpenseList of ExpenseController");
-        return expenseService.getExpenseList();
+        List<Expense> expenses = expenseService.findExpenseList();
+        return new ResponseEntity<>(expenses, HttpStatus.OK);
     }
 
-    @PostMapping("/expenses")
-    public Expense saveExpense(@RequestBody Expense expense){
+    @PostMapping("/expenses/save")
+    public ResponseEntity<Expense> newExpense(@RequestBody Expense expense){
         log.info("Inside saveExpense of ExpenseController");
-        return expenseService.saveExpense(expense);
+        Expense newExpense = expenseService.saveExpense(expense);
+        return new ResponseEntity<>(newExpense, HttpStatus.CREATED);
     }
 
-    @GetMapping("/expenses/{id}")
-    public Expense getExpenseById(@PathVariable("id") Long expenseId) throws ExpenseNotFoundException {
+    @GetMapping("/expenses/find/{id}")
+    public ResponseEntity<Expense> getExpenseById(@PathVariable("id") Long expenseId) throws ExpenseNotFoundException {
         log.info("Inside getExpenseById of ExpenseController");
-        return expenseService.getExpenseById(expenseId);
+        Expense expense = expenseService.findExpenseById(expenseId);
+        return new ResponseEntity<>(expense, HttpStatus.FOUND);
     }
 
-    @PutMapping("/expenses/{id}")
-    public Expense updateExpense(@PathVariable("id")Long expenseId,
+    @PutMapping("/expenses/update/{id}")
+    public ResponseEntity<Expense> updateExpense(@PathVariable("id")Long expenseId,
                                  @RequestBody Expense expense){
         log.info("Inside updateExpense of ExpenseController");
-        return expenseService.updateExpense(expenseId, expense);
+        Expense updateExpense = expenseService.updateExpense(expenseId, expense);
+        return new ResponseEntity<>(updateExpense, HttpStatus.OK);
     }
 
     @DeleteMapping("/expenses/{id}")
-    public String deleteExpense(@PathVariable("id") Long expenseId){
+    public ResponseEntity<String> deleteExpense(@PathVariable("id") Long expenseId){
+        log.info("Inside updateExpense of ExpenseController");
         expenseService.deleteExpense(expenseId);
-        return "Expense deleted successfully";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

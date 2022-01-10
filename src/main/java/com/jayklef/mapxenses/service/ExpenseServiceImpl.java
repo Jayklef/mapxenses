@@ -22,7 +22,7 @@ public class ExpenseServiceImpl implements ExpenseService{
     private UserRepository userRepository;
 
     @Override
-    public List<Expense> getExpenseList() {
+    public List<Expense> findExpenseList() {
         return expenseRepository.findAll();
     }
 
@@ -32,7 +32,7 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
-    public Expense getExpenseById(Long expenseId) throws ExpenseNotFoundException {
+    public Expense findExpenseById(Long expenseId) throws ExpenseNotFoundException {
 
         Optional<Expense> expense = expenseRepository.findById(expenseId);
 

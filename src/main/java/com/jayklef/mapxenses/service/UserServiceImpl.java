@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService{
     private ExpenseRepository expenseRepository;
 
     @Override
-    public List<User> getUserList() {
+    public List<User> findUserList() {
         return userRepository.findAll();
     }
 
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserById(Long id) throws UserNotFoundException {
+    public User findUserById(Long id) throws UserNotFoundException {
         Optional<User> user = userRepository.findById(id);
 
         if (id == null){
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserByName(String name) {
+    public User findUserByName(String name) {
         return userRepository.findUserByName(name);
     }
 
