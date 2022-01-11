@@ -1,4 +1,4 @@
-package com.jayklef.mapxenses.model;
+package com.jayklef.mapxenses.Expense.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDate;
 
 @Entity

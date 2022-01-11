@@ -1,6 +1,6 @@
-package com.jayklef.mapxenses.repository;
+package com.jayklef.mapxenses.Expense.repository;
 
-import com.jayklef.mapxenses.model.Expense;
+import com.jayklef.mapxenses.Expense.model.Expense;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

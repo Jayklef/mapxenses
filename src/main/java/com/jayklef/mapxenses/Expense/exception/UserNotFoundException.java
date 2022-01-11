@@ -1,4 +1,4 @@
-package com.jayklef.mapxenses.exception;
+package com.jayklef.mapxenses.Expense.exception;
 
 public class UserNotFoundException extends Exception{
     public UserNotFoundException() {

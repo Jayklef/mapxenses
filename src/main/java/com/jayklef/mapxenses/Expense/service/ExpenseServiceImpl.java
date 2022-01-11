@@ -1,15 +1,12 @@
-package com.jayklef.mapxenses.service;
+package com.jayklef.mapxenses.Expense.service;
 
-import com.jayklef.mapxenses.exception.ExpenseNotFoundException;
-import com.jayklef.mapxenses.model.Expense;
-import com.jayklef.mapxenses.model.User;
-import com.jayklef.mapxenses.repository.ExpenseRepository;
-import com.jayklef.mapxenses.repository.UserRepository;
+import com.jayklef.mapxenses.Expense.exception.ExpenseNotFoundException;
+import com.jayklef.mapxenses.Expense.model.Expense;
+import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
+import com.jayklef.mapxenses.Expense.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.*;
 
 @Service

@@ -1,9 +1,9 @@
-package com.jayklef.mapxenses.service;
+package com.jayklef.mapxenses.Expense.service;
 
-import com.jayklef.mapxenses.exception.UserNotFoundException;
-import com.jayklef.mapxenses.model.User;
-import com.jayklef.mapxenses.repository.ExpenseRepository;
-import com.jayklef.mapxenses.repository.UserRepository;
+import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
+import com.jayklef.mapxenses.Expense.model.User;
+import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
+import com.jayklef.mapxenses.Expense.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

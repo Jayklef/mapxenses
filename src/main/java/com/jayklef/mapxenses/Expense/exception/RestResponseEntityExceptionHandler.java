@@ -1,6 +1,6 @@
-package com.jayklef.mapxenses.exception;
+package com.jayklef.mapxenses.Expense.exception;
 
-import com.jayklef.mapxenses.model.ErrorMessage;
+import com.jayklef.mapxenses.Expense.model.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,8 +1,8 @@
-package com.jayklef.mapxenses.controller;
+package com.jayklef.mapxenses.Expense.controller;
 
-import com.jayklef.mapxenses.exception.ExpenseNotFoundException;
-import com.jayklef.mapxenses.model.Expense;
-import com.jayklef.mapxenses.service.ExpenseService;
+import com.jayklef.mapxenses.Expense.exception.ExpenseNotFoundException;
+import com.jayklef.mapxenses.Expense.model.Expense;
+import com.jayklef.mapxenses.Expense.service.ExpenseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

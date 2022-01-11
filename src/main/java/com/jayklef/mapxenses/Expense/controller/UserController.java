@@ -1,9 +1,9 @@
-package com.jayklef.mapxenses.controller;
+package com.jayklef.mapxenses.Expense.controller;
 
-import com.jayklef.mapxenses.exception.UserNotFoundException;
-import com.jayklef.mapxenses.model.User;
-import com.jayklef.mapxenses.service.ExpenseService;
-import com.jayklef.mapxenses.service.UserService;
+import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
+import com.jayklef.mapxenses.Expense.model.User;
+import com.jayklef.mapxenses.Expense.service.ExpenseService;
+import com.jayklef.mapxenses.Expense.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

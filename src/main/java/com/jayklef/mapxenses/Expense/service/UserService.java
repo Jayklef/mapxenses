@@ -1,8 +1,7 @@
-package com.jayklef.mapxenses.service;
+package com.jayklef.mapxenses.Expense.service;
 
-import com.jayklef.mapxenses.exception.UserNotFoundException;
-import com.jayklef.mapxenses.model.Expense;
-import com.jayklef.mapxenses.model.User;
+import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
+import com.jayklef.mapxenses.Expense.model.User;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package com.jayklef.mapxenses.service;
+package com.jayklef.mapxenses.Expense.service;
 
-import com.jayklef.mapxenses.exception.CategoryNotFoundException;
-import com.jayklef.mapxenses.model.Category;
-import com.jayklef.mapxenses.repository.CategoryRepository;
+import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
+import com.jayklef.mapxenses.Expense.model.Category;
+import com.jayklef.mapxenses.Expense.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
