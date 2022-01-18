@@ -18,7 +18,7 @@ public class Expense {
     private Long expenseId;
     private String description;
     private LocalDate expenseDate;
-    private BigDecimal amount;
+    private Double amount;
 
     @ManyToOne
     private Category category;

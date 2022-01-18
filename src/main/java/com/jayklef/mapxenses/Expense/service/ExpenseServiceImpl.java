@@ -7,7 +7,10 @@ import com.jayklef.mapxenses.Expense.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService{
@@ -38,6 +41,15 @@ public class ExpenseServiceImpl implements ExpenseService{
         }
 
         return expenseRepository.findById(expenseId).get();
+    }
+
+    @Override
+    public Double calculateWeeklyExpenses(LocalDate startDate, LocalDate endDate) {
+        List<Expense> expenses = expenseRepository.findByExpensesBetween(startDate, endDate);
+
+        return expenses.stream()
+                .mapToDouble(Expense::getAmount)
+                .sum();
     }
 
     @Override
