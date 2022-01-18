@@ -12,6 +12,8 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 @Service
 public class ExpenseServiceImpl implements ExpenseService{
 
@@ -50,6 +52,22 @@ public class ExpenseServiceImpl implements ExpenseService{
         return expenses.stream()
                 .mapToDouble(Expense::getAmount)
                 .sum();
+    }
+
+    @Override
+    public Double calculateMonthlyExpenses(LocalDate startDate, LocalDate endDate) {
+
+        List<Expense> monthlyExpenses = expenseRepository.findAllExpensesBetween(startDate, endDate);
+
+       // LocalDate start = LocalDate.parse("2020-11-03");
+       // LocalDate end = LocalDate.parse("2020-12-15");
+
+     //   Double diff = Double.valueOf(DAYS.between(start, end));
+
+        return monthlyExpenses.stream()
+                .mapToDouble(Expense::getAmount)
+                .sum();
+
     }
 
     @Override

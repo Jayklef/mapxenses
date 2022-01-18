@@ -20,4 +20,6 @@ public interface ExpenseService {
     Expense findExpenseById(Long expenseId) throws ExpenseNotFoundException;
 
     Double calculateWeeklyExpenses(LocalDate startDate, LocalDate endDate);
+
+    Double calculateMonthlyExpenses(LocalDate startDate, LocalDate endDate);
 }

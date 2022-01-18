@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
 
 
 public class Utility {
@@ -18,4 +20,8 @@ public class Utility {
         return new ResponseEntity<>(expenses, HttpStatus.OK);
     }
 
+    public ResponseEntity<Double> monthlyExpenses(LocalDate startDate, LocalDate endDate){
+        List<Double> monthlyExpenses = Collections.singletonList(expenseService.calculateMonthlyExpenses(startDate, endDate));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
