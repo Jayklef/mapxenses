@@ -11,9 +11,9 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     url: jdbc:mysql://localhost:3306/expenses
-    password: mysql
+    password: JY@class4579
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: 'true'
 
