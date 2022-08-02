@@ -3,6 +3,7 @@ package com.jayklef.mapxenses.Expense.controller;
 import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Category;
+import com.jayklef.mapxenses.Expense.model.CategoryModel;
 import com.jayklef.mapxenses.Expense.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -35,12 +37,11 @@ public class CategoryController {
     }
 
     @PostMapping("/categories/save")
-    public ResponseEntity<Category> addCategory(@RequestBody Category category){
+    public ResponseEntity<Category> addCategory(@RequestBody CategoryModel categoryModel){
         log.info("Inside saveCategory of CategoryController");
-        Category addCategory = categoryService.saveCategory(category);
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("api/categories/save").toUriString());
-        return ResponseEntity.created(uri).body(addCategory);
+
+        Category addCategory = categoryService.saveCategory(categoryModel);
+        return new ResponseEntity(addCategory, HttpStatus.CREATED);
     }
 
     @GetMapping("/categories/get/{id}")

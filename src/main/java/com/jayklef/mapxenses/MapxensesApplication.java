@@ -1,5 +1,7 @@
 package com.jayklef.mapxenses;
 
+import com.jayklef.mapxenses.Expense.entity.User;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -15,5 +17,11 @@ public class MapxensesApplication {
     @Bean
     public RestTemplate restTemplate () {
         return new RestTemplate();
+    }
+    @Bean
+    CommandLineRunner run(){
+        return args -> {
+
+        };
     }
 }

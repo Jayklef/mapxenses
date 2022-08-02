@@ -3,6 +3,7 @@ package com.jayklef.mapxenses.Expense.service;
 import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Category;
+import com.jayklef.mapxenses.Expense.model.CategoryModel;
 import com.jayklef.mapxenses.Expense.repository.CategoryRepository;
 import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,7 +29,10 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public Category saveCategory(Category category) {
+    public Category saveCategory(CategoryModel categoryModel) {
+
+        Category category = new Category();
+        categoryModel.setName(category.getName());
         return categoryRepository.save(category);
     }
 
@@ -70,7 +71,7 @@ public class CategoryServiceImpl implements CategoryService{
             categoryInDb.setName(category.getName());
         }
 
-        return categoryRepository.save(category);
+        return categoryRepository.save(categoryInDb);
     }
 
     @Override
