@@ -2,11 +2,13 @@ package com.jayklef.mapxenses.Expense.service;
 
 import com.jayklef.mapxenses.Expense.exception.ExpenseNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Expense;
+import com.jayklef.mapxenses.Expense.model.ExpenseModel;
 import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
 import com.jayklef.mapxenses.Expense.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -25,7 +27,12 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
-    public Expense saveExpense(Expense expense) {
+    public Expense saveExpense(ExpenseModel expenseModel) {
+        Expense expense = new Expense();
+        expenseModel.setExpenseDate(expense.getExpenseDate());
+        expenseModel.setDescription(expense.getDescription());
+        expenseModel.setAmount(expense.getAmount());
+
         return expenseRepository.save(expense);
     }
 
@@ -34,7 +41,7 @@ public class ExpenseServiceImpl implements ExpenseService{
 
         Optional<Expense> expense = expenseRepository.findById(expenseId);
 
-        if (expenseId == null){
+        if (expense.isEmpty()){
             throw new ExpenseNotFoundException("Expense not found");
         }
 
@@ -61,7 +68,7 @@ public class ExpenseServiceImpl implements ExpenseService{
      //   Double diff = Double.valueOf(DAYS.between(start, end));
 
         return monthlyExpenses.stream()
-                .mapToDouble(Expense::getAmount)
+                 .mapToDouble(Expense::getAmount)
                 .sum();
 
     }

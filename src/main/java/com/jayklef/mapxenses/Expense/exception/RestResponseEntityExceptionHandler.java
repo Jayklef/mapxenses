@@ -23,7 +23,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         message.setStatus(message.getStatus());
 
         exception.getMessage();
-        request.getClass();
+        request.getContextPath();
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(message);
@@ -40,7 +40,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         message.setStatus(message.getStatus());
 
         exception.getMessage();
-        request.getClass();
+        request.getContextPath();
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(message);
