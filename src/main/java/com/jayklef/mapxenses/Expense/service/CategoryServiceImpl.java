@@ -1,9 +1,11 @@
 package com.jayklef.mapxenses.Expense.service;
 
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
-import com.jayklef.mapxenses.Expense.model.Category;
+import com.jayklef.mapxenses.Expense.entity.Category;
 import com.jayklef.mapxenses.Expense.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,8 +32,8 @@ public class CategoryServiceImpl implements CategoryService{
     public Category findCategoryById(Long id) throws CategoryNotFoundException {
         Optional<Category> category = categoryRepository.findById(id);
 
-        if (id == null){
-            throw new CategoryNotFoundException("Category Not Found");
+        if (category.isEmpty()){
+            throw new CategoryNotFoundException(String.format("Category with id %d not found", id));
         }
 
         return categoryRepository.findById(id).get();

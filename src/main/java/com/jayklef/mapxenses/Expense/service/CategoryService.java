@@ -1,7 +1,7 @@
 package com.jayklef.mapxenses.Expense.service;
 
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
-import com.jayklef.mapxenses.Expense.model.Category;
+import com.jayklef.mapxenses.Expense.entity.Category;
 
 import java.util.List;
 

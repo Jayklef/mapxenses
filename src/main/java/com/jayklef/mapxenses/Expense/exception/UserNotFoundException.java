@@ -1,6 +1,6 @@
 package com.jayklef.mapxenses.Expense.exception;
 
-public class UserNotFoundException extends Exception{
+public class UserNotFoundException extends RuntimeException{
     public UserNotFoundException() {
         super();
     }

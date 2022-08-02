@@ -1,7 +1,7 @@
 package com.jayklef.mapxenses.Expense.controller;
 
 import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
-import com.jayklef.mapxenses.Expense.model.User;
+import com.jayklef.mapxenses.Expense.entity.User;
 import com.jayklef.mapxenses.Expense.service.ExpenseService;
 import com.jayklef.mapxenses.Expense.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("api")
 @Slf4j
 public class UserController {
 

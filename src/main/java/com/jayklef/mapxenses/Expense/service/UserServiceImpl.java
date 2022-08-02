@@ -1,7 +1,7 @@
 package com.jayklef.mapxenses.Expense.service;
 
 import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
-import com.jayklef.mapxenses.Expense.model.User;
+import com.jayklef.mapxenses.Expense.entity.User;
 import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
 import com.jayklef.mapxenses.Expense.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +32,8 @@ public class UserServiceImpl implements UserService{
     public User findUserById(Long id) throws UserNotFoundException {
         Optional<User> user = userRepository.findById(id);
 
-        if (id == null){
-            throw new UserNotFoundException("User not found");
+        if (user.isEmpty()){
+            throw new UserNotFoundException(String.format("User with id %d not found",id ));
         }
 
         return userRepository.findById(id).get();

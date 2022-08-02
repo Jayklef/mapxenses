@@ -1,7 +1,7 @@
 package com.jayklef.mapxenses.Expense.controller;
 
 import com.jayklef.mapxenses.Expense.exception.ExpenseNotFoundException;
-import com.jayklef.mapxenses.Expense.model.Expense;
+import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.service.ExpenseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/api")
+@RequestMapping("api")
 public class ExpenseController {
 
     @Autowired

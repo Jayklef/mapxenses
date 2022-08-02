@@ -1,6 +1,6 @@
 package com.jayklef.mapxenses.Expense.exception;
 
-public class ExpenseNotFoundException extends Exception{
+public class ExpenseNotFoundException extends RuntimeException{
     public ExpenseNotFoundException() {
         super();
     }

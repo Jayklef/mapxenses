@@ -1,11 +1,9 @@
 package com.jayklef.mapxenses.Expense.service;
 
 import com.jayklef.mapxenses.Expense.exception.ExpenseNotFoundException;
-import com.jayklef.mapxenses.Expense.model.Expense;
+import com.jayklef.mapxenses.Expense.entity.Expense;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface ExpenseService {

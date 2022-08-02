@@ -1,7 +1,7 @@
 package com.jayklef.mapxenses.Expense.controller;
 
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
-import com.jayklef.mapxenses.Expense.model.Category;
+import com.jayklef.mapxenses.Expense.entity.Category;
 import com.jayklef.mapxenses.Expense.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/api")
+@RequestMapping("api")
 public class CategoryController {
 
     @Autowired

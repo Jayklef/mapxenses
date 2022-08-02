@@ -1,6 +1,6 @@
 package com.jayklef.mapxenses.Expense.utils;
 
-import com.jayklef.mapxenses.Expense.model.Expense;
+import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

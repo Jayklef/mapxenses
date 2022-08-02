@@ -1,4 +1,4 @@
-package com.jayklef.mapxenses.Expense.model;
+package com.jayklef.mapxenses.Expense.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
