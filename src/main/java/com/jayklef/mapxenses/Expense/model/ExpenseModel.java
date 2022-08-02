@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ExpenseModel {
 
+    private String name;
     private String description;
     private LocalDate expenseDate;
     private Double amount;

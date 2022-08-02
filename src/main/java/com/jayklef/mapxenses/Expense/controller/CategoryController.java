@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -36,7 +38,9 @@ public class CategoryController {
     public ResponseEntity<Category> addCategory(@RequestBody Category category){
         log.info("Inside saveCategory of CategoryController");
         Category addCategory = categoryService.saveCategory(category);
-        return new ResponseEntity<>(addCategory, HttpStatus.CREATED);
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("api/categories/save").toUriString());
+        return ResponseEntity.created(uri).body(addCategory);
     }
 
     @GetMapping("/categories/get/{id}")

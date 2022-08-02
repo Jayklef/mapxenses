@@ -16,6 +16,7 @@ public class Expense {
 
     @Id
     private Long expenseId;
+    private String name;
     private String description;
     private LocalDate expenseDate;
     private Double amount;
