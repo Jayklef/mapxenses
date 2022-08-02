@@ -1,22 +1,29 @@
 package com.jayklef.mapxenses.Expense.service;
 
+import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Category;
 import com.jayklef.mapxenses.Expense.repository.CategoryRepository;
+import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService{
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ExpenseRepository expenseRepository;
 
     @Override
     public List<Category> findAllCategories() {
@@ -37,6 +44,21 @@ public class CategoryServiceImpl implements CategoryService{
         }
 
         return categoryRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Expense> findAllExpensesByCategoryId(Long id) {
+
+        Optional<Category> category = categoryRepository.findById(id);
+
+        if (!category.isPresent()){
+            throw new RuntimeException("");
+        }
+
+        return category.get().getExpenses()
+                .stream()
+                .sorted(Comparator.comparing(Expense::getAmount))
+                .collect(Collectors.toList());
     }
 
     @Override

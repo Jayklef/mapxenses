@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.Expense.controller;
 
+import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Category;
 import com.jayklef.mapxenses.Expense.service.CategoryService;
@@ -24,6 +25,11 @@ public class CategoryController {
         log.info("Inside getCategoryList of CategoryController");
         List<Category> categories = categoryService.findAllCategories();
         return new ResponseEntity<>(categories, HttpStatus.OK);
+    }
+    @GetMapping("/id")
+    public ResponseEntity<List<Expense>> findAllExpenseByCategory(@PathVariable("id") Long id){
+        List<Expense> expenses = categoryService.findAllExpensesByCategoryId(id);
+        return new ResponseEntity<>(expenses, HttpStatus.FOUND);
     }
 
     @PostMapping("/categories/save")

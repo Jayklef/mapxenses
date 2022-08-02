@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.Expense.service;
 
+import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Category;
 
@@ -16,4 +17,6 @@ public interface CategoryService {
     List<Category> findAllCategories();
 
     Category findCategoryById(Long id)throws CategoryNotFoundException;
+
+    List<Expense> findAllExpensesByCategoryId(Long id);
 }
