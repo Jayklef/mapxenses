@@ -50,6 +50,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User findUserByName(String name) {
+        User user = userRepository.findUserByName(name);
+
+        if (user == null){
+            throw new RuntimeException("User not found");
+        }
         return userRepository.findUserByName(name);
     }
 
@@ -70,7 +75,7 @@ public class UserServiceImpl implements UserService{
 
         if (Objects.nonNull(user.getPassword())&&
         !"".equalsIgnoreCase(user.getPassword())){
-            userInDb.setPassword(userInDb.getPassword());
+            userInDb.setPassword(user.getPassword());
         }
 
         if (Objects.nonNull(user.getEmail())&&
@@ -92,7 +97,7 @@ public class UserServiceImpl implements UserService{
                 !"".equalsIgnoreCase(user.getProfession())){
             userInDb.setProfession(user.getProfession());
         }
-        return userRepository.save(user);
+        return userRepository.save(userInDb);
     }
 
     @Override
