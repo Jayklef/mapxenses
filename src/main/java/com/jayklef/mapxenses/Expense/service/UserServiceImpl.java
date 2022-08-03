@@ -63,6 +63,16 @@ public class UserServiceImpl implements UserService{
             userInDb.setName(user.getName());
         }
 
+        if (Objects.nonNull(user.getUsername()) &&
+        !"".equalsIgnoreCase(user.getUsername())){
+            userInDb.setUsername(user.getUsername());
+        }
+
+        if (Objects.nonNull(user.getPassword())&&
+        !"".equalsIgnoreCase(user.getPassword())){
+            userInDb.setPassword(userInDb.getPassword());
+        }
+
         if (Objects.nonNull(user.getEmail())&&
                 !"".equalsIgnoreCase(user.getEmail())){
             userInDb.setEmail(user.getEmail());

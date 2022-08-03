@@ -45,8 +45,8 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<User> getUserByName(@PathVariable("name") String name){
+    @GetMapping("/fetch/name")
+    public ResponseEntity<User> getUserByName(@RequestParam("name") String name){
         log.info("Inside getUserByName of UserController");
         User user = userService.findUserByName(name);
         return new ResponseEntity<>(user, HttpStatus.OK);
