@@ -2,13 +2,12 @@ package com.jayklef.mapxenses.Expense.service;
 
 import com.jayklef.mapxenses.Expense.exception.ExpenseNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Expense;
-import com.jayklef.mapxenses.Expense.model.ExpenseModel;
+import com.jayklef.mapxenses.Expense.dto.ExpenseDto;
 import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
 import com.jayklef.mapxenses.Expense.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -27,11 +26,11 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
-    public Expense saveExpense(ExpenseModel expenseModel) {
+    public Expense saveExpense(ExpenseDto expenseDto) {
         Expense expense = new Expense();
-        expenseModel.setExpenseDate(expense.getExpenseDate());
-        expenseModel.setDescription(expense.getDescription());
-        expenseModel.setAmount(expense.getAmount());
+        expenseDto.setExpenseDate(expense.getExpenseDate());
+        expenseDto.setDescription(expense.getDescription());
+        expenseDto.setAmount(expense.getAmount());
 
         return expenseRepository.save(expense);
     }

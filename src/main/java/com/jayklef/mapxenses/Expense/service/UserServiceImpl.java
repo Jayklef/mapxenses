@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.Expense.service;
 
+import com.jayklef.mapxenses.Expense.dto.UserDto;
 import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.User;
 import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
@@ -24,7 +25,15 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User saveUser(User user) {
+    public User saveUser(UserDto userDto) {
+        User user = new User();
+        userDto.setName(user.getName());
+        userDto.setUsername(user.getUsername());
+        userDto.setPassword(user.getPassword());
+        userDto.setEmail(user.getEmail());
+        userDto.setGender(user.getGender());
+        userDto.setAddress(user.getAddress());
+        userDto.setProfession(user.getProfession());
         return userRepository.save(user);
     }
 

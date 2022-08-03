@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.Expense.service;
 
+import com.jayklef.mapxenses.Expense.dto.UserDto;
 import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.User;
 
@@ -8,7 +9,7 @@ import java.util.List;
 public interface UserService {
     List<User> findUserList();
 
-    User saveUser(User user);
+    User saveUser(UserDto userDto);
 
     User findUserById(Long id) throws UserNotFoundException;
 

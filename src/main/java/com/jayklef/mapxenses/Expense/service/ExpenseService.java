@@ -2,14 +2,13 @@ package com.jayklef.mapxenses.Expense.service;
 
 import com.jayklef.mapxenses.Expense.exception.ExpenseNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Expense;
-import com.jayklef.mapxenses.Expense.model.ExpenseModel;
+import com.jayklef.mapxenses.Expense.dto.ExpenseDto;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 public interface ExpenseService {
-    Expense saveExpense(ExpenseModel expenseModel);
+    Expense saveExpense(ExpenseDto expenseDto);
 
     Expense updateExpense(Long expenseId, Expense expense);
 

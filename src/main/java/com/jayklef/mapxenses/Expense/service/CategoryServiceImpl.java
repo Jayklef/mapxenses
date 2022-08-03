@@ -3,12 +3,10 @@ package com.jayklef.mapxenses.Expense.service;
 import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Category;
-import com.jayklef.mapxenses.Expense.model.CategoryModel;
+import com.jayklef.mapxenses.Expense.dto.CategoryDto;
 import com.jayklef.mapxenses.Expense.repository.CategoryRepository;
 import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -29,10 +27,10 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public Category saveCategory(CategoryModel categoryModel) {
+    public Category saveCategory(CategoryDto categoryDto) {
 
         Category category = new Category();
-        categoryModel.setName(category.getName());
+        categoryDto.setName(category.getName());
         return categoryRepository.save(category);
     }
 
@@ -53,7 +51,7 @@ public class CategoryServiceImpl implements CategoryService{
         Optional<Category> category = categoryRepository.findById(id);
 
         if (!category.isPresent()){
-            throw new RuntimeException("");
+            throw new RuntimeException(String.format("Category with id %d not found" + id));
         }
 
         return category.get().getExpenses()

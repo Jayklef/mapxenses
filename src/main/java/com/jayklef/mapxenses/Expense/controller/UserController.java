@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.Expense.controller;
 
+import com.jayklef.mapxenses.Expense.dto.UserDto;
 import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.User;
 import com.jayklef.mapxenses.Expense.service.ExpenseService;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/users")
 @Slf4j
 public class UserController {
 
@@ -23,35 +24,35 @@ public class UserController {
     @Autowired
     private ExpenseService expenseService;
 
-    @GetMapping("/users")
+    @GetMapping("/all")
     public ResponseEntity<List<User>> getUserList(){
         log.info("Inside getUserList of UserController");
         List<User> user = userService.findUserList();
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PostMapping("/users/save")
-    public ResponseEntity<User> newUser(@RequestBody User user){
+    @PostMapping("/save")
+    public ResponseEntity<User> newUser(@RequestBody UserDto userDto){
         log.info("Inside saveUser of UserController");
-        User newUser = userService.saveUser(user);
+        User newUser = userService.saveUser(userDto);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
-    @GetMapping("/users/get/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id) throws UserNotFoundException {
         log.info("Inside getUserById of UserController");
         User user = userService.findUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping("/users/name")
+    @GetMapping("/{name}")
     public ResponseEntity<User> getUserByName(@PathVariable("name") String name){
         log.info("Inside getUserByName of UserController");
         User user = userService.findUserByName(name);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PutMapping("/users/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") Long id,
                            @RequestBody User user){
         log.info("Inside updateUser of UserController");
@@ -59,7 +60,7 @@ public class UserController {
         return new ResponseEntity<>(updateUser, HttpStatus.OK);
     }
 
-    @DeleteMapping("/users/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long id){
         log.info("Inside updateUser of UserController");
         userService.deleteUser(id);

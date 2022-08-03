@@ -2,7 +2,7 @@ package com.jayklef.mapxenses.Expense.controller;
 
 import com.jayklef.mapxenses.Expense.exception.ExpenseNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Expense;
-import com.jayklef.mapxenses.Expense.model.ExpenseModel;
+import com.jayklef.mapxenses.Expense.dto.ExpenseDto;
 import com.jayklef.mapxenses.Expense.service.ExpenseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @Slf4j
@@ -32,9 +29,9 @@ public class ExpenseController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Expense> newExpense(@RequestBody ExpenseModel expenseModel){
+    public ResponseEntity<Expense> newExpense(@RequestBody ExpenseDto expenseDto){
         log.info("Inside saveExpense of ExpenseController");
-        Expense newExpense = expenseService.saveExpense(expenseModel);
+        Expense newExpense = expenseService.saveExpense(expenseDto);
         return new ResponseEntity<>(newExpense, HttpStatus.CREATED);
     }
 

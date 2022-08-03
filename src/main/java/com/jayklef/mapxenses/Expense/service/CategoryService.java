@@ -3,14 +3,13 @@ package com.jayklef.mapxenses.Expense.service;
 import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Category;
-import com.jayklef.mapxenses.Expense.model.CategoryModel;
+import com.jayklef.mapxenses.Expense.dto.CategoryDto;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CategoryService {
 
-    Category saveCategory(CategoryModel categoryModel);
+    Category saveCategory(CategoryDto categoryDto);
 
     Category updateCategory(Long id, Category category);
 
