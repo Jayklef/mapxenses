@@ -16,4 +16,5 @@ public class UserDto {
     private String gender;
     private String address;
     private String profession;
+
 }

@@ -1,9 +1,12 @@
 package com.jayklef.mapxenses.Expense.controller;
 
+import com.jayklef.mapxenses.Expense.dto.RoleDto;
 import com.jayklef.mapxenses.Expense.dto.UserDto;
+import com.jayklef.mapxenses.Expense.entity.Role;
 import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.User;
 import com.jayklef.mapxenses.Expense.service.ExpenseService;
+import com.jayklef.mapxenses.Expense.service.RoleService;
 import com.jayklef.mapxenses.Expense.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,9 @@ public class UserController {
     @Autowired
     private ExpenseService expenseService;
 
+    @Autowired
+    private RoleService roleService;
+
     @GetMapping("/all")
     public ResponseEntity<List<User>> getUserList(){
         log.info("Inside getUserList of UserController");
@@ -36,6 +42,12 @@ public class UserController {
         log.info("Inside saveUser of UserController");
         User newUser = userService.saveUser(userDto);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+    }
+    @PostMapping("/role/add")
+    public void addRoleToUser(@RequestBody String username, String roleName){
+       User user = userService.findUserByName(username);
+       Role role = roleService.findByRoleName(roleName);
+       user.getRoles().add(role);
     }
 
     @GetMapping("/get/{id}")

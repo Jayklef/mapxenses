@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -26,4 +28,7 @@ public class User {
 
     @OneToMany
     private List<Expense> expenses;
+
+    @ManyToMany
+    private Collection<Role> roles = new ArrayList<>();
 }

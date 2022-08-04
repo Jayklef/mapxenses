@@ -1,9 +1,12 @@
 package com.jayklef.mapxenses.Expense.service;
 
+import com.jayklef.mapxenses.Expense.dto.RoleDto;
 import com.jayklef.mapxenses.Expense.dto.UserDto;
+import com.jayklef.mapxenses.Expense.entity.Role;
 import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.User;
 import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
+import com.jayklef.mapxenses.Expense.repository.RoleRepository;
 import com.jayklef.mapxenses.Expense.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +16,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
@@ -25,10 +31,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private ExpenseRepository expenseRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userRepository.findUserByName(username);
+        User user = userRepository.findByUsername(username);
 
         if (user == null){
             log.error("User not found in DB");
@@ -71,13 +80,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User findUserByName(String name) {
-        User user = userRepository.findUserByName(name);
+    public User findUserByName(String username) {
+        User user = userRepository.findByUsername(username);
 
         if (user == null){
             throw new RuntimeException("User not found");
         }
-        return userRepository.findUserByName(name);
+        return userRepository.findByUsername(username);
     }
 
     @Override
@@ -125,6 +134,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public void addRoleToUser(String username, String roleName) {
+      User user = userRepository.findByUsername(username);
+      Role role = roleRepository.findByRoleName(roleName);
+      user.getRoles().add(role);
     }
 
 }
