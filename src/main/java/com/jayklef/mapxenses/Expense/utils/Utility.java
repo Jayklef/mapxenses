@@ -16,9 +16,6 @@ import java.util.List;
 public class Utility {
 
     @Autowired
-    private ExpenseService expenseService;
-
-    @Autowired
     private RestTemplate restTemplate;
 
     public Object ExpenseChart(){

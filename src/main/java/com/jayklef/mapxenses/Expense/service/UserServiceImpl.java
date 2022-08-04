@@ -5,19 +5,41 @@ import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.User;
 import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
 import com.jayklef.mapxenses.Expense.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class UserServiceImpl implements UserService{
+@Slf4j
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
     private ExpenseRepository expenseRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        User user = userRepository.findUserByName(username);
+
+        if (user == null){
+            log.error("User not found in DB");
+        }else {
+            log.info("User {} found in DB:", username);
+        }
+
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+    }
 
     @Override
     public List<User> findUserList() {
@@ -104,4 +126,5 @@ public class UserServiceImpl implements UserService{
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
 }
