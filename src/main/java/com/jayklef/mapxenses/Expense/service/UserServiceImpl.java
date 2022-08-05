@@ -14,6 +14,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,9 +31,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     private ExpenseRepository expenseRepository;
-
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -46,6 +49,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
 
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        user.getRoles().forEach(role -> {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        });
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
@@ -60,7 +66,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = new User();
         userDto.setName(user.getName());
         userDto.setUsername(user.getUsername());
-        userDto.setPassword(user.getPassword());
+        userDto.setPassword(encoder.encode(user.getPassword()));
         userDto.setEmail(user.getEmail());
         userDto.setGender(user.getGender());
         userDto.setAddress(user.getAddress());
