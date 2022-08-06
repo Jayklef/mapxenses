@@ -30,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService{
     public Category saveCategory(CategoryDto categoryDto) {
 
         Category category = new Category();
-        categoryDto.setName(category.getName());
+        category.setName(categoryDto.getName());
         return categoryRepository.save(category);
     }
 
