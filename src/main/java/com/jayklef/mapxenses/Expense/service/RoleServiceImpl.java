@@ -17,7 +17,7 @@ public class RoleServiceImpl implements RoleService{
     public Role saveRole(RoleDto roleDto) {
 
         Role role = new Role();
-        roleDto.setName(role.getName());
+        role.setName(roleDto.getName());
         return roleRepository.save(role);
     }
 
