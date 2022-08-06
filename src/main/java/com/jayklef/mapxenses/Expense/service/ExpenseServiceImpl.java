@@ -28,9 +28,10 @@ public class ExpenseServiceImpl implements ExpenseService{
     @Override
     public Expense saveExpense(ExpenseDto expenseDto) {
         Expense expense = new Expense();
-        expenseDto.setExpenseDate(expense.getExpenseDate());
-        expenseDto.setDescription(expense.getDescription());
-        expenseDto.setAmount(expense.getAmount());
+        expense.setName(expenseDto.getName());
+        expense.setDescription(expenseDto.getDescription());
+        expense.setAmount(expenseDto.getAmount());
+        expense.setExpenseDate(expenseDto.getExpenseDate());
 
         return expenseRepository.save(expense);
     }
