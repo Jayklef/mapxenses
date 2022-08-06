@@ -64,13 +64,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User saveUser(UserDto userDto) {
         User user = new User();
-        userDto.setName(user.getName());
-        userDto.setUsername(user.getUsername());
-        userDto.setPassword(encoder.encode(user.getPassword()));
-        userDto.setEmail(user.getEmail());
-        userDto.setGender(user.getGender());
-        userDto.setAddress(user.getAddress());
-        userDto.setProfession(user.getProfession());
+        user.setName(userDto.getName());
+        user.setUsername(userDto.getUsername());
+        user.setPassword(encoder.encode(userDto.getPassword()));
+        user.setEmail(userDto.getEmail());
+        user.setGender(userDto.getGender());
+        user.setAddress(userDto.getAddress());
+        user.setProfession(userDto.getProfession());
         return userRepository.save(user);
     }
 
