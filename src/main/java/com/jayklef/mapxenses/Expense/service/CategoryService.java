@@ -20,4 +20,6 @@ public interface CategoryService {
     Category findCategoryById(Long id)throws CategoryNotFoundException;
 
     List<Expense> findAllExpensesByCategoryId(Long id);
+
+    Category findByName(String name);
 }
