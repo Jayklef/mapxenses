@@ -1,6 +1,7 @@
 package com.jayklef.mapxenses.Expense.controller;
 
 import com.jayklef.mapxenses.Expense.dto.RoleDto;
+import com.jayklef.mapxenses.Expense.dto.RoleToUserDto;
 import com.jayklef.mapxenses.Expense.dto.UserDto;
 import com.jayklef.mapxenses.Expense.entity.Role;
 import com.jayklef.mapxenses.Expense.exception.UserNotFoundException;
@@ -41,10 +42,9 @@ public class UserController {
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
     @PostMapping("/role/add")
-    public void addRoleToUser(@RequestBody String username, String roleName){
-       User user = userService.findUserByName(username);
-       Role role = roleService.findByName(roleName);
-       user.getRoles().add(role);
+    public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserDto role){
+       userService.addRoleToUser(role.getUsername(), role.getRoleName());
+       return ResponseEntity.ok().build();
     }
 
     @GetMapping("/get/{id}")
