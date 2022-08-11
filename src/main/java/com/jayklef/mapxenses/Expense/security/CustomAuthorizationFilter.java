@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import static java.util.Arrays.stream;
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 
 @Slf4j
@@ -30,7 +31,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
         if (request.getServletPath().equals("api/login")){
             filterChain.doFilter(request, response);
         }else {
-            String authorizationHeader = request.getHeader("Authorization");
+            String authorizationHeader = request.getHeader(AUTHORIZATION);
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")){
                 try {
                     String token = authorizationHeader.substring("Bearer ".length());
