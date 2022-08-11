@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.Expense.controller;
 
+import com.jayklef.mapxenses.Expense.dto.ExpenseToCategoryDto;
 import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Category;
@@ -48,9 +49,9 @@ public class CategoryController {
     }
 
     @PostMapping("/expensename")
-    public void addExpenseToCategory(String name, String expenseName){
-        expenseService.findByName(expenseName);
-        categoryService.findByName(name);
+    public ResponseEntity<?> addExpenseToCategory(@RequestBody ExpenseToCategoryDto expense){
+        categoryService.addExpenseToCategory(expense.getCategoryName(), expense.getExpenseName());
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/get/{id}")
