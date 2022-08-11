@@ -22,4 +22,6 @@ public interface CategoryService {
     List<Expense> findAllExpensesByCategoryId(Long id);
 
     Category findByName(String name);
+
+    void addExpenseToCategory(String name, String expenseName);
 }

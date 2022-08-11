@@ -25,9 +25,6 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private ExpenseService expenseService;
-
-    @Autowired
     private RoleService roleService;
 
     @GetMapping("/all")

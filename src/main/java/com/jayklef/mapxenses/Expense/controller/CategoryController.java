@@ -5,6 +5,7 @@ import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Category;
 import com.jayklef.mapxenses.Expense.dto.CategoryDto;
 import com.jayklef.mapxenses.Expense.service.CategoryService;
+import com.jayklef.mapxenses.Expense.service.ExpenseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,10 @@ public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ExpenseService expenseService;
+
 
     @GetMapping("/all")
     public ResponseEntity<List<Category>> getCategoryList(){
@@ -40,6 +45,12 @@ public class CategoryController {
 
         Category addCategory = categoryService.saveCategory(categoryDto);
         return new ResponseEntity(addCategory, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/expensename")
+    public void addExpenseToCategory(String name, String expenseName){
+        expenseService.findByName(expenseName);
+        categoryService.findByName(name);
     }
 
     @GetMapping("/get/{id}")

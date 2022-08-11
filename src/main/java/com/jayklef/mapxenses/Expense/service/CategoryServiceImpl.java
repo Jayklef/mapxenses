@@ -78,6 +78,13 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
+    public void addExpenseToCategory(String name, String expenseName) {
+        Category category = categoryRepository.findByName(name);
+        Expense expense = expenseRepository.findByName(expenseName);
+        category.getExpenses().add(expense);
+    }
+
+    @Override
     public void deleteCategory(Long id) {
         categoryRepository.deleteById(id);
     }
