@@ -5,5 +5,5 @@ import com.jayklef.mapxenses.Expense.entity.Role;
 
 public interface RoleService {
     Role saveRole(RoleDto roleDto);
-    Role findByRoleName(String name);
+    Role findByName(String name);
 }

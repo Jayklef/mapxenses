@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping("/role/add")
     public void addRoleToUser(@RequestBody String username, String roleName){
        User user = userService.findUserByName(username);
-       Role role = roleService.findByRoleName(roleName);
+       Role role = roleService.findByName(roleName);
        user.getRoles().add(role);
     }
 
