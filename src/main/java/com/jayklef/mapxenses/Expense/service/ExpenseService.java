@@ -21,4 +21,6 @@ public interface ExpenseService {
     Double calculateWeeklyExpenses(LocalDate startDate, LocalDate endDate);
 
     Double calculateMonthlyExpenses(LocalDate startDate, LocalDate endDate);
+
+    Expense findByName(String name);
 }

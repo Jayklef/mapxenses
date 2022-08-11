@@ -57,6 +57,13 @@ public class ExpenseController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/name")
+    public ResponseEntity<Expense> getByName(String name){
+        Expense expense = expenseService.findByName(name);
+        log.info("getting expense by name :{}", expense.getName());
+        return new ResponseEntity<>(expense, HttpStatus.OK);
+    }
+
     @GetMapping("/weekly")
     public ResponseEntity<Double> calculateWeeklyExpenses(LocalDate startDate, LocalDate endDate) {
         Double expenses = expenseService.calculateWeeklyExpenses(startDate, endDate);

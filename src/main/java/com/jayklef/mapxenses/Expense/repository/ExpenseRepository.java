@@ -17,4 +17,6 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     @Query(value = "select e from Expense e")
     List<Expense> findAllExpensesBetween(LocalDate startDate, LocalDate endDate);
+
+    Expense findByName(String name);
 }

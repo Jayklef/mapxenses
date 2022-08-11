@@ -74,6 +74,11 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
+    public Expense findByName(String name) {
+        return expenseRepository.findByName(name);
+    }
+
+    @Override
     public Expense updateExpense(Long expenseId, Expense expense) {
         Expense expenseInDb = expenseRepository.findById(expenseId).get();
 
