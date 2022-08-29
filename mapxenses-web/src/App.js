@@ -1,4 +1,5 @@
 import "./App.css"
+import Home from "./components/Overview";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div className="App">
      <div className="AppGlass">
 
-      <div></div>
+      <Home />
       <Sidebar />
 
      </div>

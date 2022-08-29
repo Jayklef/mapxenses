@@ -1,0 +1,41 @@
+.MainScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 7%;
+}
+.mainTop{
+    display: flex;
+    justify-content: space-between;
+}
+.imgTxt {
+    display: flex;
+    gap: 2rem;
+}
+.acctBal{
+    font-size: 24px;
+}
+.imgWallet {
+    width: 40px;
+}
+.walletTxt {
+    display: grid;
+}
+.walletTxt .span2 {
+    font-size: 12px;
+    margin-top: 5px;
+    color: gray;
+}
+.budgetCard{
+    margin-top: 50px;
+}
+.calendar{
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+.site-card-border-less-wrapper {
+    /* padding: 30px; */
+    border-radius: 10px;
+  }
+ 
