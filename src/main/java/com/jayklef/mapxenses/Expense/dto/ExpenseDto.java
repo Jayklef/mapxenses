@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.Expense.dto;
 
+import com.jayklef.mapxenses.Expense.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,4 +16,5 @@ public class ExpenseDto {
     private String description;
     private LocalDate expenseDate;
     private Double amount;
+    private Long categoryId;
 }

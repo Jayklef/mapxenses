@@ -21,18 +21,17 @@ public class ExpenseController {
     @Autowired
     private ExpenseService expenseService;
 
+    @PostMapping("/save")
+    public ResponseEntity<Expense> saveExpense(@PathVariable ExpenseDto expenseDto){
+        Expense newExpense = expenseService.saveExpense(expenseDto);
+        return new ResponseEntity<>(newExpense, HttpStatus.CREATED);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<Expense>> getExpenseList(){
         log.info("Inside getExpenseList of ExpenseController");
         List<Expense> expenses = expenseService.findExpenseList();
         return new ResponseEntity<>(expenses, HttpStatus.OK);
-    }
-
-    @PostMapping("/save")
-    public ResponseEntity<Expense> newExpense(@RequestBody ExpenseDto expenseDto){
-        log.info("Inside saveExpense of ExpenseController");
-        Expense newExpense = expenseService.saveExpense(expenseDto);
-        return new ResponseEntity<>(newExpense, HttpStatus.CREATED);
     }
 
     @GetMapping("/find/{id}")

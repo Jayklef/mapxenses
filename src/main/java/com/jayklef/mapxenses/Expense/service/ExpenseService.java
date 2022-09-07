@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ExpenseService {
-    Expense saveExpense(ExpenseDto expenseDto);
 
     Expense updateExpense(Long expenseId, Expense expense);
 
@@ -23,4 +22,6 @@ public interface ExpenseService {
     Double calculateMonthlyExpenses(LocalDate startDate, LocalDate endDate);
 
     Expense findByName(String name);
+
+    Expense saveExpense(ExpenseDto expenseDto);
 }

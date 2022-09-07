@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.Expense.controller;
 
+import com.jayklef.mapxenses.Expense.dto.ExpenseDto;
 import com.jayklef.mapxenses.Expense.dto.ExpenseToCategoryDto;
 import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
@@ -43,12 +44,17 @@ public class CategoryController {
     @PostMapping("/save")
     public ResponseEntity<Category> addCategory(@RequestBody CategoryDto categoryDto){
         log.info("Inside saveCategory of CategoryController");
-
         Category addCategory = categoryService.saveCategory(categoryDto);
-        return new ResponseEntity(addCategory, HttpStatus.CREATED);
+        return new ResponseEntity<>(addCategory, HttpStatus.CREATED);
     }
 
-    @PostMapping("/expensename")
+    @PostMapping("expenses/save")
+    public ResponseEntity<Expense> newExpense(@RequestBody ExpenseDto expenseDto){
+        log.info("Inside saveExpense of ExpenseController");
+        Expense newExpense = categoryService.saveExpense(expenseDto);
+        return new ResponseEntity<>(newExpense, HttpStatus.CREATED);
+    }
+    @PostMapping("/expenseName")
     public ResponseEntity<?> addExpenseToCategory(@RequestBody ExpenseToCategoryDto expense){
         categoryService.addExpenseToCategory(expense.getCategoryName(), expense.getExpenseName());
         return ResponseEntity.ok().build();

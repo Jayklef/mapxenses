@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.Expense.service;
 
+import com.jayklef.mapxenses.Expense.dto.ExpenseDto;
 import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Category;
@@ -10,6 +11,7 @@ import java.util.List;
 public interface CategoryService {
 
     Category saveCategory(CategoryDto categoryDto);
+    Expense saveExpense(ExpenseDto expenseDto);
 
     Category updateCategory(Long id, Category category);
 

@@ -35,13 +35,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers(POST, "api/roles/save/**").hasAuthority("ADMIN");
+        http.authorizeRequests().anyRequest().permitAll();
+       /* http.authorizeRequests().antMatchers(POST, "api/roles/save/**").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers(POST,"api/expenses/save/**").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers(POST, "api/categories/save").hasAuthority("ADMIN");
         http.authorizeRequests().antMatchers(PUT, "api/users/**", "api/expenses/**", "api/categories/**");
         http.authorizeRequests().antMatchers(GET, "api/users/**").hasAnyAuthority("ADMIN", "USER", "MANAGER");
         http.authorizeRequests().antMatchers(DELETE, "api/users/**", "api/expenses/**", "api/categories/**").hasAuthority("admin");
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().anyRequest().authenticated(); */
         http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

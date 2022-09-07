@@ -1,5 +1,6 @@
 package com.jayklef.mapxenses.Expense.service;
 
+import com.jayklef.mapxenses.Expense.dto.ExpenseDto;
 import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.exception.CategoryNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Category;
@@ -32,6 +33,18 @@ public class CategoryServiceImpl implements CategoryService{
         Category category = new Category();
         category.setName(categoryDto.getName());
         return categoryRepository.save(category);
+    }
+
+    @Override
+    public Expense saveExpense(ExpenseDto expenseDto) {
+        Expense expense = new Expense();
+        expense.setName(expenseDto.getName());
+        expense.setDescription(expenseDto.getDescription());
+        expense.setExpenseDate(expenseDto.getExpenseDate());
+        expense.setAmount(expenseDto.getAmount());
+        expense.setCategory(expenseDto.getCategory());
+
+        return expenseRepository.save(expense);
     }
 
     @Override

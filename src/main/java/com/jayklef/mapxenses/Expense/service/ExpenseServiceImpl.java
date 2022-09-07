@@ -1,8 +1,10 @@
 package com.jayklef.mapxenses.Expense.service;
 
+import com.jayklef.mapxenses.Expense.entity.Category;
 import com.jayklef.mapxenses.Expense.exception.ExpenseNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.dto.ExpenseDto;
+import com.jayklef.mapxenses.Expense.repository.CategoryRepository;
 import com.jayklef.mapxenses.Expense.repository.ExpenseRepository;
 import com.jayklef.mapxenses.Expense.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class ExpenseServiceImpl implements ExpenseService{
     private ExpenseRepository expenseRepository;
 
     @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Override
@@ -26,12 +31,15 @@ public class ExpenseServiceImpl implements ExpenseService{
     }
 
     @Override
-    public Expense saveExpense(ExpenseDto expenseDto) {
+    public Expense saveExpense(ExpenseDto expenseDto){
+
         Expense expense = new Expense();
         expense.setName(expenseDto.getName());
         expense.setDescription(expenseDto.getDescription());
-        expense.setAmount(expenseDto.getAmount());
         expense.setExpenseDate(expenseDto.getExpenseDate());
+        expense.setAmount(expenseDto.getAmount());
+        Optional<Category> category = categoryRepository.findById(expenseDto.getCategoryId());
+        expense.setCategory(category.get());
 
         return expenseRepository.save(expense);
     }
