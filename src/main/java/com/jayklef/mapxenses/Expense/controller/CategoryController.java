@@ -35,7 +35,7 @@ public class CategoryController {
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("expenses/{id}")
     public ResponseEntity<List<Expense>> findAllExpenseByCategory(@PathVariable("id") Long id){
         List<Expense> expenses = categoryService.findAllExpensesByCategoryId(id);
         return new ResponseEntity<>(expenses, HttpStatus.FOUND);

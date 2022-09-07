@@ -22,7 +22,7 @@ public class ExpenseController {
     private ExpenseService expenseService;
 
     @PostMapping("/save")
-    public ResponseEntity<Expense> saveExpense(@PathVariable ExpenseDto expenseDto){
+    public ResponseEntity<Expense> saveExpense(@RequestBody ExpenseDto expenseDto){
         Expense newExpense = expenseService.saveExpense(expenseDto);
         return new ResponseEntity<>(newExpense, HttpStatus.CREATED);
     }

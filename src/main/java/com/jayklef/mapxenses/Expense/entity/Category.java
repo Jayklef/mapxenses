@@ -20,7 +20,7 @@ public class Category {
     private Long id;
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Expense> expenses;
 
 }
