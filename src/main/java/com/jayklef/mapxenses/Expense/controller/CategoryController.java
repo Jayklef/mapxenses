@@ -48,12 +48,6 @@ public class CategoryController {
         return new ResponseEntity<>(addCategory, HttpStatus.CREATED);
     }
 
-    @PostMapping("expenses/save")
-    public ResponseEntity<Expense> newExpense(@RequestBody ExpenseDto expenseDto){
-        log.info("Inside saveExpense of ExpenseController");
-        Expense newExpense = categoryService.saveExpense(expenseDto);
-        return new ResponseEntity<>(newExpense, HttpStatus.CREATED);
-    }
     @PostMapping("/expenseName")
     public ResponseEntity<?> addExpenseToCategory(@RequestBody ExpenseToCategoryDto expense){
         categoryService.addExpenseToCategory(expense.getCategoryName(), expense.getExpenseName());

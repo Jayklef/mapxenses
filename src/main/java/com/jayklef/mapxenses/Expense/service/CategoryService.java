@@ -11,7 +11,6 @@ import java.util.List;
 public interface CategoryService {
 
     Category saveCategory(CategoryDto categoryDto);
-    Expense saveExpense(ExpenseDto expenseDto);
 
     Category updateCategory(Long id, Category category);
 
