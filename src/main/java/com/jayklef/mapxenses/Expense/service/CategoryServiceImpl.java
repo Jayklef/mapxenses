@@ -46,21 +46,6 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public List<Expense> findAllExpensesByCategoryId(Long id) {
-
-        Optional<Category> category = categoryRepository.findById(id);
-
-        if (!category.isPresent()){
-            throw new RuntimeException(String.format("Category with id %d not found" + id));
-        }
-
-        return category.get().getExpenses()
-                .stream()
-                .sorted(Comparator.comparing(Expense::getAmount))
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public Category updateCategory(Long id, Category category) {
         Category categoryInDb = categoryRepository.findById(id).get();
 
@@ -78,10 +63,8 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public void addExpenseToCategory(String name, String expenseName) {
-        Category category = categoryRepository.findByName(name);
-        Expense expense = expenseRepository.findByName(expenseName);
-        category.getExpenses().add(expense);
+    public List<Expense> findAllExpensesByCategoryId(Long id) {
+        return expenseRepository.findAllById(Collections.singleton(id));
     }
 
     @Override

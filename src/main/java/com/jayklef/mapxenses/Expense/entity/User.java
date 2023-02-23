@@ -26,9 +26,6 @@ public class User {
     private String address;
     private String profession;
 
-    @OneToMany
-    private List<Expense> expenses;
-
     @ManyToMany
     private Collection<Role> roles = new ArrayList<>();
 }

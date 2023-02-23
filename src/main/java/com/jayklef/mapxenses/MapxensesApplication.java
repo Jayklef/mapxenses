@@ -43,14 +43,7 @@ public class MapxensesApplication {
             categoryService.saveCategory(new CategoryDto("Beverages"));
             categoryService.saveCategory(new CategoryDto("Electronics"));
 
-           /* categoryService.addExpenseToCategory("Healthcare", "drugs");
-            categoryService.addExpenseToCategory("Foodstuff", "rice");
-            categoryService.addExpenseToCategory("Foodstuff", "garri");
-            categoryService.addExpenseToCategory("Foodstuff", "Beans");
-            categoryService.addExpenseToCategory("Healthcare", "vitamin C");
-            categoryService.addExpenseToCategory("Foodstuff", "Yam");
-            categoryService.addExpenseToCategory("Beverages", "Bournvita");
-            categoryService.addExpenseToCategory("Foodstuff", "Indomie"); */
+
         };
     }
 }

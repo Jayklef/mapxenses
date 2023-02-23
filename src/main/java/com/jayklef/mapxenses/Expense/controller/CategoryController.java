@@ -35,23 +35,11 @@ public class CategoryController {
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
-    @GetMapping("expenses/{id}")
-    public ResponseEntity<List<Expense>> findAllExpenseByCategory(@PathVariable("id") Long id){
-        List<Expense> expenses = categoryService.findAllExpensesByCategoryId(id);
-        return new ResponseEntity<>(expenses, HttpStatus.FOUND);
-    }
-
     @PostMapping("/save")
     public ResponseEntity<Category> addCategory(@RequestBody CategoryDto categoryDto){
         log.info("Inside saveCategory of CategoryController");
         Category addCategory = categoryService.saveCategory(categoryDto);
         return new ResponseEntity<>(addCategory, HttpStatus.CREATED);
-    }
-
-    @PostMapping("/expenseName")
-    public ResponseEntity<?> addExpenseToCategory(@RequestBody ExpenseToCategoryDto expense){
-        categoryService.addExpenseToCategory(expense.getCategoryName(), expense.getExpenseName());
-        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/get/{id}")

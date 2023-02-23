@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService{
@@ -43,6 +44,7 @@ public class ExpenseServiceImpl implements ExpenseService{
 
         return expenseRepository.save(expense);
     }
+
 
     @Override
     public Expense findExpenseById(Long expenseId) throws ExpenseNotFoundException {

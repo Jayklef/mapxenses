@@ -3,6 +3,7 @@ package com.jayklef.mapxenses.Expense.controller;
 import com.jayklef.mapxenses.Expense.exception.ExpenseNotFoundException;
 import com.jayklef.mapxenses.Expense.entity.Expense;
 import com.jayklef.mapxenses.Expense.dto.ExpenseDto;
+import com.jayklef.mapxenses.Expense.service.CategoryService;
 import com.jayklef.mapxenses.Expense.service.ExpenseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class ExpenseController {
 
     @Autowired
     private ExpenseService expenseService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     @PostMapping("/save")
     public ResponseEntity<Expense> saveExpense(@RequestBody ExpenseDto expenseDto){
